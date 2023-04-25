@@ -1,5 +1,5 @@
 const { DataTypes, Model } = require('sequelize');
-const sequelize = require("./db.config")
+const sequelize = require("./db.connection")
 
 class Post extends Model {
   static associate({ User }) {
@@ -17,6 +17,14 @@ Post.init({
   title: DataTypes.STRING,
   content: DataTypes.TEXT,
   tag: DataTypes.STRING,
+  publishedAt: DataTypes.DATE,
+  publishedBy: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: "User",
+      key: "id"
+    }
+  },
   createdAt: {
     type: DataTypes.DATE
   },

@@ -12,8 +12,11 @@ const createUser = async (req, res) => {
 
 const findUsers = async (req, res) => {
   try {
-    const users = await User.findAll({ include: 'posts' });
-    return res.json(users);
+    const users = await User.findAll();
+    console.log(users.every(user => user instanceof User));
+    console.log("🚀 ~ file: userController.js:16 ~ findUsers ~ users:", users)
+    
+    return res.json(JSON.stringify(users));
   } catch (err) {
     return res.status(500).json({ err: "An error occured" });
   }

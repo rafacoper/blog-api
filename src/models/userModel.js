@@ -1,5 +1,5 @@
 const { DataTypes, Model } = require('sequelize');
-const sequelize = require("./db.config")
+const sequelize = require("./db.connection")
 
 class User extends Model {
   static associate({ Post }) {
