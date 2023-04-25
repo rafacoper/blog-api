@@ -3,7 +3,7 @@ const sequelize = require("./db.config")
 
 class User extends Model {
   static associate({ Post }) {
-    this.hasMany(Post, { foreignKey: 'userId', as: 'posts' })
+    this.hasMany(Post, { foreignKey: 'userId', as: 'post' })
   }
 };
 User.init({
@@ -27,9 +27,29 @@ User.init({
     type: DataTypes.INTEGER,
     allowNull: false,
   },
+  role: {
+    type: DataTypes.ENUM("admin", "active", "disabled"),
+    defaultValue: "active",
+    allowNull: false
+  },
+  createdAt: {
+    type: DataTypes.DATE
+  },
+  createdBy: {
+    type: DataTypes.UUID
+  },
+  updatedAt: {
+    type: DataTypes.DATE
+  },
   updatedBy: {
     type: DataTypes.UUID
-  }
+  },
+  deletedAt: {
+    type: DataTypes.DATE
+  },
+  deletedBy: {
+    type: DataTypes.UUID
+  },
 }, {
   sequelize,
   timestamps: true,

@@ -25,15 +25,27 @@ Post.init({
       key: "id"
     }
   },
+  createdAt: {
+    type: DataTypes.DATE
+  },
+  createdBy: {
+    type: DataTypes.UUID
+  },
+  updatedAt: {
+    type: DataTypes.DATE
+  },
+  updatedBy: {
+    type: DataTypes.UUID
+  },
+  deletedAt: {
+    type: DataTypes.DATE
+  },
+  deletedBy: {
+    type: DataTypes.UUID
+  },
 }, {
   sequelize,
   modelName: 'Posts',
 });
 
-sequelize.sync().then(() => {
-  console.log('User table created successfully!');
-}).catch((error) => {
-  console.error('Unable to create table : ', error);
-});
-
-return Posts;
+return Post;

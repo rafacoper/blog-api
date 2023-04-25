@@ -1,11 +1,10 @@
 const express = require('express');
-const routes = express.Router();
-
 const app = express();
 
-app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(routes);
+app.use(express.urlencoded({ extended: false }));
 
+require("./src/routes")(app)
 
-app.listen(3000, () => console.log("Servidor iniciado na porta 3000"));
+const PORT = 3963
+app.listen(PORT, () => console.log(`Server listening to port ${PORT}`));

@@ -4,17 +4,10 @@ const config = require("../config/config")
 const dbName = config.database; 
 const dbUser = config.username;
 const dbPassword = config.password;
-const dbPool = config.pool;
 
 const sequelize = new Sequelize(dbName, dbUser, dbPassword, {
   dialect: "postgres", 
   host: "localhost",
-  pool: {
-    max: dbPool.max,
-    min: dbPool.min,
-    acquire: dbPool.acquire,
-    idle: dbPool.idle
-  }
 });
 
 sequelize.authenticate().then(() => {
@@ -23,10 +16,10 @@ sequelize.authenticate().then(() => {
    console.error('Unable to connect to the database: ', error);
 });
 
-sequelize.sync().then(() => {
-  console.log('User table created successfully!');
-}).catch((error) => {
-  console.error('Unable to create table : ', error);
-});
+// sequelize.sync().then(() => {
+//   console.log('User table created successfully!');
+// }).catch((error) => {
+//   console.error('Unable to create table : ', error);
+// });
 
 module.exports = sequelize

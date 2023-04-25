@@ -1,4 +1,4 @@
-import { User } from '../models/userModel';
+const User = require('../models/userModel');
 
 const createUser = async (req, res) => {
   const userData = req.body;
@@ -11,13 +11,13 @@ const createUser = async (req, res) => {
 };
 
 const findUsers = async (req, res) => {
-    try {
-      const users = await User.findAll({ include: 'posts' });
-      return res.json(users);
-    } catch (err) {
-      return res.status(500).json({ err: "An error occured" });
-    }
-  });
+  try {
+    const users = await User.findAll({ include: 'posts' });
+    return res.json(users);
+  } catch (err) {
+    return res.status(500).json({ err: "An error occured" });
+  }
+};
 
 const updateUser = async (req, res) => {
   const id = req.params.id;
@@ -38,7 +38,6 @@ const updateUser = async (req, res) => {
   } catch (err) {
     return res.status(500).json({ err: "An error occured" });
   }
-});
 };
 
 const deleteUser = async (req, res) => {
@@ -54,7 +53,7 @@ const deleteUser = async (req, res) => {
   }
 };
 
-export default {
+module.exports = {
   createUser,
   findUsers,
   updateUser,
