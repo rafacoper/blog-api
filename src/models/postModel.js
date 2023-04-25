@@ -17,14 +17,6 @@ Post.init({
   title: DataTypes.STRING,
   content: DataTypes.TEXT,
   tag: DataTypes.STRING,
-  publishedAt: DataTypes.DATE,
-  publishedBy: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: "User",
-      key: "id"
-    }
-  },
   createdAt: {
     type: DataTypes.DATE
   },
