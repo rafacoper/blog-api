@@ -8,6 +8,8 @@ module.exports = app => {
   })
   
   app.get("/users", userController.findUsers)
+  
+  app.get("/users/:email", userController.findByEmail)
 
   app.get("/users", userController.createUser)
 

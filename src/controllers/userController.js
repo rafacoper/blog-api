@@ -1,4 +1,4 @@
-const User = require('../models/userModel');
+const User = require('../models/userModel')
 
 const createUser = async (req, res) => {
   const userData = req.body;
@@ -10,15 +10,20 @@ const createUser = async (req, res) => {
   }
 };
 
-const findUsers = async (req, res) => {
+const findUsers = async (_req, res) => {
   try {
-    const users = await User.findAll();
-    console.log(users.every(user => user instanceof User));
-    console.log("🚀 ~ file: userController.js:16 ~ findUsers ~ users:", users)
-    
-    return res.json(JSON.stringify(users));
+    const users = await User.findOne()
+    return res.json(users);
   } catch (err) {
-    return res.status(500).json({ err: "An error occured" });
+    return res.status(500).json({ err: "An error occured - findUsers" });
+  }
+};
+const findByEmail = async (req, res) => {
+  try {
+    const user = await User.findByEmail(req.params.email)
+    return res.json(user);
+  } catch (err) {
+    return res.status(500).json({ err: "An error occured - findByEmail" });
   }
 };
 
@@ -59,6 +64,7 @@ const deleteUser = async (req, res) => {
 module.exports = {
   createUser,
   findUsers,
+  findByEmail,
   updateUser,
   deleteUser
 }
